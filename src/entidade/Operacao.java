@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Operacao {
 	private float valor;
-	private String tipoOperacao;
+	private String TipoOperacao;
 	private Date dataHora;
 
 	public Date getDataHora() {
@@ -12,12 +12,12 @@ public class Operacao {
 	}
 
 	public String getTipoOperacao() {
-		return tipoOperacao;
+		return TipoOperacao;
 	}
 
 	public Operacao(float valor, String tipoOperacao, Date dataHora) {
 		this.valor = valor;
-		this.tipoOperacao = tipoOperacao;
+		this.TipoOperacao = tipoOperacao;
 		this.dataHora = dataHora;
 	}
 
@@ -27,7 +27,7 @@ public class Operacao {
 	
 	@Override
 	public String toString() {
-		return "[ valor: " + this.getValor() + ", tipoOperacao: " + this.getTipoOperacao() + ", dataHora: " + this.getDataHora() + "]";
+		return "[ valor: " + this.getValor() + ", TipoOperacao: " + this.getTipoOperacao() + ", dataHora: " + this.getDataHora() + "]";
 	}
 
 }

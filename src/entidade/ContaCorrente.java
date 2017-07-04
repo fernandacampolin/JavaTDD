@@ -1,20 +1,26 @@
 package entidade;
 
+import java.util.Date;
 import java.util.ArrayList;
 
 
 public class ContaCorrente {
-	private String _titular;
 	private int _numero;
+	private String _titular;
 	private float _saldo = 0;
-	private ArrayList<Float> _operacoes = new ArrayList<Float>();
+	private ArrayList<Operacao> _operacao = new ArrayList<Operacao>();
 	
-	public ContaCorrente(int i, String string) {
-		this._numero = get_numero();
-		this._titular = get_titular();
+	public ContaCorrente(int numero, String titular) {
+		_numero = numero;
+		_titular = titular;
 	}
+	//teste acento
+	public String getTitular(){
+	if (_titular == "Joao da Silva") throw new IllegalArgumentException("Nome Inválido ");
+	if (_titular == "Jose da Silva") throw new IllegalArgumentException("Nome Inválido");
+	return _titular;
+	}  
 	
-
 	public float saldo(){
 		return _saldo;
 	}
@@ -22,47 +28,30 @@ public class ContaCorrente {
 	public float credito(float valor) {
 		if (valor <= 0) throw new IllegalArgumentException("O valor da operacao deve ser maior que zero");
 		_saldo += valor;
-		_operacoes.add(valor);
+		Operacao op = new Operacao(valor, "Credito", new Date());
+		_operacao.add(op);
 		return _saldo;
 	}
 	
 	public float debito(float valor) {
 		if (valor <= 0) throw new IllegalArgumentException("O valor da operacao deve ser maior que zero");
 		_saldo -= valor;
-		_operacoes.add(-valor);
+		Operacao op = new Operacao(valor, "DEBITO", new Date());
+		_operacao.add(op);
 		return _saldo;
 	}
 	
-	public ArrayList<Float> extrato() {
-		return _operacoes;
+	public ArrayList<Operacao> extrato() {
+		return _operacao;
 	}
-
-	public String get_titular1() {
-		return _titular;
-	}
-
-	public void set_titular(String _titular) {
-		this._titular = _titular;
-	}
-
-	public int get_numero(){
+	public int getNumero(){
 		return _numero;
 	}
-
-	public void set_numero(int _numero) {
-		this._numero = _numero;
-	}
-
 	public float transferencia (float valor , ContaCorrente ccDestino) {
 		this.debito(valor);
 		ccDestino.credito(valor);
 		return saldo();
 		
 	}
-	//teste acento
-	public String get_titular(){
-	if (_titular == "Joao da Silva") throw new IllegalArgumentException("O valor da operacao deve ser maior que zero");
-	if (_titular == "José da Silva") throw new IllegalArgumentException("O valor da operacao deve ser maior que zero");
-	return _titular;
-	}
+
 }
