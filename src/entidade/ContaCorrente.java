@@ -28,7 +28,7 @@ public class ContaCorrente {
 	public float credito(float valor) {
 		if (valor <= 0) throw new IllegalArgumentException("O valor da operacao deve ser maior que zero");
 		_saldo += valor;
-		Operacao op = new Operacao(valor, "Credito", new Date());
+		Operacao op = new Operacao(valor, "CREDITO", new Date());
 		_operacao.add(op);
 		return _saldo;
 	}
